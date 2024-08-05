@@ -10,7 +10,8 @@ class PollsterAdmin(admin.ModelAdmin):
 
 class PollAdmin(admin.ModelAdmin):
     
-    list_display = ("date_published",)
+    
+    list_display = ("date_published","pollster",)
 
     
 

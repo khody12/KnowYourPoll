@@ -14,7 +14,8 @@ class Pollster(models.Model):
 class Poll(models.Model):
     harris_support = models.FloatField(null=False)
     trump_support = models.FloatField(null=False)
-    third_party_support = models.FloatField(null=True)
+    
+    third_party_support = models.FloatField(null=True, blank=True)
 
     date_published = models.DateField()
     link_to_poll = models.URLField(null=True)

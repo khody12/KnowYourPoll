@@ -2,13 +2,17 @@
 {% load static %}
 
 {% block title %} Know Your Poll {% endblock %}
+
 {% block css_styles %}
   <link rel="stylesheet" href="{% static "main/homepage_two_way.css" %}">
 {% endblock %}
+
 {% block content %}
 <header id ="main-nav">
   <h1><a href="{% url "home"%}">Know Your Poll</a></h1>
 </header>
+
+<h2>Harris v Trump v RFK</h2>
 
 <h2>Poll List</h2>
 
@@ -19,6 +23,7 @@
             <th>Date Published</th>
             <th>Harris Support</th>
             <th>Trump Support</th>
+            <th>Third Party Support</th>
         </tr>
     </thead>
     <tbody>
@@ -28,22 +33,14 @@
             <td>{{ poll.date_published }}</td>
             <td>{{ poll.harris_support }}</td>
             <td>{{ poll.trump_support }}</td>
+            <td>{{ poll.third_party_support }}</td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
 
 
-<!-- <h2>Harris v Trump (2-way)</h2>
-  <ul>
-    {% for poll in polls %}
-      <li>
-        Harris: {{poll.harris_support}}  Trump: {{poll.trump_support}}   Pollster: {{poll.pollster}}  Date: {{poll.date_published}}
-      </li>
-      {% endfor %}
-  </ul> -->
-  <a href="{%url "threeway" %}" class="button">With Kennedy</a>
-
 
 
 {% endblock %}
+
