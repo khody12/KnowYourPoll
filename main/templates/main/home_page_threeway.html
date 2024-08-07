@@ -20,16 +20,18 @@
     <thead>
         <tr>
             <th>Pollster</th>
+            <th>Pollster info</th>
             <th>Date Published</th>
             <th>Harris Support</th>
             <th>Trump Support</th>
-            <th>Third Party Support</th>
+            <th>RFK</th>
         </tr>
     </thead>
     <tbody>
         {% for poll in polls %}
         <tr>
-            <td>{{ poll.pollster.name_of_pollster }}</td>
+            <td><a href={{poll.link_to_poll}}>{{ poll.pollster.name_of_pollster }}</a></td>
+            <td>{{poll.pollster.info}}</td>
             <td>{{ poll.date_published }}</td>
             <td>{{ poll.harris_support }}</td>
             <td>{{ poll.trump_support }}</td>
