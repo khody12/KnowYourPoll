@@ -16,12 +16,19 @@ class Poll(models.Model):
     trump_support = models.FloatField(null=False)
     third_party_support = models.FloatField(null=True, blank=True)
     region = models.CharField(null=False,max_length=50)
+    
 
     date_published = models.DateField()
     link_to_poll = models.URLField(null=True)
     type_of_voters = models.CharField(max_length=50)
     number_of_respondents = models.IntegerField()
     pollster = models.ForeignKey(Pollster, on_delete=models.CASCADE,related_name="polls") #if pollster is deleted, models.CASCADE makes it so all polls by said pollster are also deleted.
+
+    margin = models.IntegerField()
+
+    def save(self, *args,**kwargs):
+        self.margin = abs(self.harris_support - self.trump_support)
+        super().save(*args, **kwargs)
     
     def __str__(self):
         return f"{self.pollster.name_of_pollster} {self.date_published}"

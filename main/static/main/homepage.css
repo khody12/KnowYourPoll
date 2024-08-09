@@ -11,61 +11,83 @@ body{
 
 
 table {
-  margin:15px;
-    width: 100%;
-    border-collapse: collapse;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  
-  th, td {
-    padding: 12px 15px;
-    text-align: left;
-  }
-  
-  th {
-    background-color: #3f51b5;
-    color: #fff;
-    font-weight: bold;
-    border-bottom: 3px solid #f1f1f1;
-  }
-  
-  tr {
-    border-bottom: 1px solid #ddd;
-  }
-  
-  tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
-  
-  tr:hover {
-    background-color: #e2e2e2;
-    cursor: pointer;
-  }
-  
-  td {
-    border-right: 1px solid #ddd;
-  }
-  
-  td:last-child {
-    border-right: none; /* Remove right border for the last column */
-  }
-  .container{
+  margin: 15px;
+  width: 100%;
+  border-collapse: collapse; /* Combine borders into one */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff; /* White background for modern look */
+  border-radius: 8px; /* Rounded corners */
+  overflow: hidden;
+  font-family: 'Arial', sans-serif; /* Modern sans-serif font */
+}
+
+th, td {
+  padding: 15px 20px; /* Increase padding for more space */
+  text-align: left;
+}
+
+th {
+  background-color: transparent; /* Darker, muted color for header */
+  color: grey; /* White text for contrast */
+  font-weight: normal; /* Lighter font weight for a modern look */
+  letter-spacing: 1px; /* Slight letter spacing for style */
+  text-transform: uppercase; /* Make the header text uppercase */
+  border-bottom: 2px solid #dddddd; /* Subtle border below the header */
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9; /* Light grey background for even rows */
+}
+
+tr:hover {
+  background-color: #f1f1f1; /* Slightly darker grey on hover */
+  cursor: pointer; /* Pointer cursor to indicate interactivity */
+}
+
+td {
+  border-right: none; /* Remove vertical dividers */
+  font-size: 14px; /* Slightly smaller font for modern look */
+  color: #333333; /* Dark grey text color */
+}
+
+td:last-child {
+  border-right: none; /* Remove right border for the last column */
+}
+
+tr:last-child td {
+  border-bottom: none; /* Remove bottom border for the last row */
+}
+
+.container{
     display:flex;
     width:100%;
     justify-content:space-between;
     align-items:center;
-    background:linear-gradient(to right,rgb(119, 119, 194), rgb(180, 84, 84))
-  }
+    background:linear-gradient(to right,rgb(119, 119, 194), rgb(180, 84, 84));
+    font-size:10px;
+}
 
-  .button{
-    font-size:35px;
-    text-decoration:none;
-    
-    background-color:whitesmoke;
-    border-radius:8px;
-    box-shadow:0 4px whitesmoke;
-    cursor:pointer;
-  }
+
+.container > div{
+  margin:10px;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+  padding:2px 4px;
+  cursor:pointer;
+}
+
+a:visited{
+  color:inherit;
+}
+
+a:hover{
+  color:inherit;
+  background-color:rgba(0, 0, 0, 0.1);
+  border-radius:3px;
+}
+  
+
+

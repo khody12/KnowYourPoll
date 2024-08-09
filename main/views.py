@@ -8,6 +8,8 @@ class Homepage(ListView):
     template_name = "main/home_page.html"
     model = Poll
     context_object_name = "polls"
+    
+
 
     def get_queryset(self):
         base_query = super().get_queryset()

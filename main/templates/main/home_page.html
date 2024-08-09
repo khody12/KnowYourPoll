@@ -7,15 +7,15 @@
 {% endblock %}
 {% block content %}
 <div class="container">
-  <header id ="main-nav">
+  <div id ="main-nav">
     <h1><a href="{% url "home"%}" style="text-decoration:none;">Know Your Poll</a></h1>
-  </header>
+  </div>
   <div class="h2h"> 
     <h1>Harris v Trump</h1>
   </div>
   
   <div class="threewayrace">
-    <a href="{%url "threeway" %}" class="button">With Kennedy</a>
+    <h1><a href="{%url "threeway" %}" class="button">With Kennedy</a></h1>
   </div>
 
 </div>
@@ -27,6 +27,7 @@
             <th>Date Published</th>
             <th>Harris Support</th>
             <th>Trump Support</th>
+            <th>Result</th>
         </tr>
     </thead>
     <tbody>
@@ -36,6 +37,21 @@
             <td>{{ poll.date_published }}</td>
             <td>{{ poll.harris_support }}</td>
             <td>{{ poll.trump_support }}</td>
+            <td 
+                {% if poll.harris_support > poll.trump_support %}
+                    style="background-color: lightblue;"
+                {% elif poll.harris_support < poll.trump_support %}
+                    style="background-color: lightcoral;"
+                {% endif %}
+            >
+                {% if poll.harris_support > poll.trump_support %}
+                    Harris +{{ poll.margin }}
+                {% elif poll.harris_support < poll.trump_support %}
+                    Trump +{{ poll.margin }}
+                {% else %}
+                    EVEN
+                {% endif %}
+            </td>
         </tr>
         {% endfor %}
     </tbody>
@@ -55,3 +71,20 @@
 
 
 {% endblock %}
+
+
+
+
+
+<!-- /*<td>
+  {% if poll.harris_support > poll.trump_support %}
+    <p>Harris +{{poll.margin}}</p>
+    style="background-color:lightblue;"
+  {% elif poll.harris_support < poll.trump_support % }
+    <p>Trump + {{poll.margin}}</p>
+    style="background-color:lightred;"
+  {% else %}
+    <p> EVEN </p>
+  {% endif %}
+
+</td> -->
