@@ -1,4 +1,17 @@
+
+html{
+  margin:0;
+  padding:0;
+
+}
+body{
+  margin:0;
+  padding:0;
+}
+
+
 table {
+  margin:15px;
     width: 100%;
     border-collapse: collapse;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -38,4 +51,21 @@ table {
   
   td:last-child {
     border-right: none; /* Remove right border for the last column */
+  }
+  .container{
+    display:flex;
+    width:100%;
+    justify-content:space-between;
+    align-items:center;
+    background:linear-gradient(to right,rgb(119, 119, 194), rgb(180, 84, 84))
+  }
+
+  .button{
+    font-size:35px;
+    text-decoration:none;
+    
+    background-color:whitesmoke;
+    border-radius:8px;
+    box-shadow:0 4px whitesmoke;
+    cursor:pointer;
   }

@@ -4,7 +4,7 @@
 {% block title %} Know Your Poll {% endblock %}
 
 {% block css_styles %}
-  <link rel="stylesheet" href="{% static "main/homepage_two_way.css" %}">
+  <link rel="stylesheet" href="{% static "main/homepage.css" %}">
 {% endblock %}
 
 {% block content %}
@@ -30,7 +30,7 @@
     <tbody>
         {% for poll in polls %}
         <tr>
-            <td><a href={{poll.link_to_poll}}>{{ poll.pollster.name_of_pollster }}</a></td>
+            <td><a href={{poll.link_to_poll}} style="text-decoration:none">{{ poll.pollster.name_of_pollster }}</a></td>
             <td>{{poll.pollster.info}}</td>
             <td>{{ poll.date_published }}</td>
             <td>{{ poll.harris_support }}</td>

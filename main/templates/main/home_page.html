@@ -3,14 +3,22 @@
 
 {% block title %} Know Your Poll {% endblock %}
 {% block css_styles %}
-  <link rel="stylesheet" href="{% static "main/homepage_two_way.css" %}">
+  <link rel="stylesheet" href="{% static "main/homepage.css" %}">
 {% endblock %}
 {% block content %}
-<header id ="main-nav">
-  <h1><a href="{% url "home"%}">Know Your Poll</a></h1>
-</header>
-<h1>Harris v Trump</h1>
-<h2>Poll List</h2>
+<div class="container">
+  <header id ="main-nav">
+    <h1><a href="{% url "home"%}" style="text-decoration:none;">Know Your Poll</a></h1>
+  </header>
+  <div class="h2h"> 
+    <h1>Harris v Trump</h1>
+  </div>
+  
+  <div class="threewayrace">
+    <a href="{%url "threeway" %}" class="button">With Kennedy</a>
+  </div>
+
+</div>
 
 <table>
     <thead>
@@ -42,7 +50,7 @@
       </li>
       {% endfor %}
   </ul> -->
-  <a href="{%url "threeway" %}" class="button">With Kennedy</a>
+  
 
 
 
