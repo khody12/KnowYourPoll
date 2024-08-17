@@ -7,7 +7,7 @@ from django.http import JsonResponse
 
 # Create your views here.
 
-def data_to_graph():
+def data_to_graph(request):
 
     data = Poll_Aggregate.objects.all().order_by("date")
 

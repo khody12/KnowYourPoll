@@ -88,6 +88,16 @@ a:hover{
   background-color:rgba(0, 0, 0, 0.1);
   border-radius:3px;
 }
+
+#chart-container{
+  width:90%;
+  margin:0 auto;
+}
+
+svg{
+  width:100%;
+  height:auto;
+}
   
 
 
