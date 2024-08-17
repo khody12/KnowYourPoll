@@ -10,7 +10,7 @@ class Poll_Aggregate(models.Model):
     includes_third_party = models.BooleanField(default=False)
 
     class Meta:
-        unique_together = ("date", "includes_third_party")
+        constraints = [models.UniqueConstraint(fields=["date", "includes_third_party"],name="unique_date_includes_third_party")]
 
     def __str__(self):
         if self.includes_third_party:

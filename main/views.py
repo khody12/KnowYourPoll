@@ -36,16 +36,21 @@ def update_daily_aggregates(): #this code is a bit error prone right now, might 
 
     Poll_Aggregate.objects.update_or_create(
         date=latest_date,
-        harris_support=harris_avg_h2h,
-        trump_support=trump_avg_h2h,
-        includes_third_party=False
+        includes_third_party=False,
+        defaults={ #this defaults bit is necessary, this is what updates our values. Here we need to update the support numbers based on some new poll. 
+            "harris_support":harris_avg_h2h,
+            "trump_support":trump_avg_h2h 
+        }
+        
     )
     Poll_Aggregate.objects.update_or_create(
         date=latest_date,
-        harris_support = harris_avg_3way,
-        trump_support = trump_avg_3way,
-        kennedy_support = kennedy_3way,
-        includes_third_party=True
+        includes_third_party=True,
+        defaults={
+            "harris_support":harris_avg_3way,
+            "trump_support": trump_avg_3way,
+            "kennedy_support": kennedy_3way
+        } 
     )
 
 
