@@ -2,6 +2,14 @@ from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 # Create your models here.
+class PollAggregate(models.Model):
+    date = models.DateField(unique=True)
+    trump_support = models.FloatField()
+    harris_support = models.FloatField()
+    
+    trump_3way_support = models.FloatField()
+    harris_3way_support = models.FloatField()
+    kennedy_3way_support = models.FloatField()
 
 class Pollster(models.Model):
     name_of_pollster = models.CharField(max_length=75)
