@@ -33,7 +33,7 @@ function renderChart(data){
     svg.append("g")
         .call(d3.axisLeft(y))
     
-    const line = d3.line()
+    const harrisLine = d3.line()
         .x(d => x(d.date))
         .y(d => y(d.harris_support))
     
@@ -42,7 +42,19 @@ function renderChart(data){
         .attr("fill", "none")
         .attr("stroke", "blue")
         .attr("stroke-width", 1)
-        .attr("d", line);
+        .attr("d", harrisLine);
+    
+    const trumpLine = d3.line()
+        .x(d => x(d.date))
+        .y(d => y(d.trump_support))
+    
+    svg.append("path")
+        .datum(data)
+        .attr("fill", "none")
+        .attr("stroke", "red")
+        .attr("stroke-width", 1)
+        .attr("d", trumpLine);
+    
     
 
     
