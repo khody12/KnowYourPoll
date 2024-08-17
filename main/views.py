@@ -2,9 +2,20 @@ from django.shortcuts import render
 from django.views.generic import ListView
 from . models import Poll, Poll_Aggregate
 from django.db.models import Avg
+from django.http import JsonResponse
 
 
 # Create your views here.
+
+def data_to_graph():
+
+    data = Poll_Aggregate.objects.all().order_by("date")
+
+    response_data = list(data.values("date", "trump_support", "harris_support", "kennedy_support", "includes_third_party" )) #this is going to be a list of dictionaries with these <-- keys
+    #we arent sending the actual objects because they need to be JSON serializable for d3.js to understand what we need to do here.
+
+    return JsonResponse(response_data, safe=False) # this safe = False is necessary because we are sending a list back, usually its just a dictionary. 
+
 
 
     
