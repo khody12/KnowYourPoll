@@ -3,11 +3,23 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 
 # Create your models here.
 class Poll_Aggregate(models.Model):
-    date = models.DateField(unique=True)
+    date = models.DateField()
     trump_support = models.FloatField()
     harris_support = models.FloatField()
     kennedy_support = models.FloatField(null=True,blank=True)
     includes_third_party = models.BooleanField(default=False)
+
+    class Meta:
+        unique_together = ("date", "includes_third_party")
+
+    def __str__(self):
+        if self.includes_third_party:
+            return f"Threeway Aggregate: {self.date}"
+        else:
+            return f"H2H Aggregate: {self.date}"
+
+        
+
     
     
 
