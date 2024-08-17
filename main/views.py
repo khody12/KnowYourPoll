@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import ListView
-from . models import Poll
+from . models import Poll, Poll_Aggregate
 from django.db.models import Avg
 
 
@@ -14,6 +14,21 @@ def update_daily_aggregates():
     harris_avg_h2h = Poll.objects.all().filter(third_party_support__isnull=True).aggregate(Avg("harris_support"))["harris_support__avg"]
     trump_avg_h2h = Poll.objects.all().filter(third_party_support__isnull=True).aggregate(Avg("trump_support"))["trump_support__avg"]
 
+    harris_avg_3way = Poll.objects.all().filter(third_party_support=True).aggregate(Avg("harris_support"))["harris_support__avg"]
+    trump_avg_3way = Poll.objects.all().filter(third_party_support=True).aggregate(Avg("trump_support"))["trump_support__avg"]
+
+    Poll_Aggregate.objects.update_or_create(
+        date=latest_date,
+        harris_support=harris_avg_h2h,
+        trump_support=trump_avg_h2h,
+        includes_third_party=False
+    )
+    Poll_Aggregate.objects.update_or_create(
+        date=latest_date,
+        harris_support = harris_avg_3way,
+        trump_support = trump_avg_3way,
+        includes_third_party=True
+    )
 
 
 class Homepage(ListView):
