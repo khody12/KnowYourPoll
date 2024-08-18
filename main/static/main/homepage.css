@@ -92,12 +92,11 @@ a:hover{
 #chart-container{
   width:90%;
   margin:0 auto;
+  border-radius:5px;
+  box-shadow: #333333;
+
 }
 
-svg{
-  width:100%;
-  height:auto;
-}
-  
+
 
 

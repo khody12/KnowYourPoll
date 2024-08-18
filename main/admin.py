@@ -8,7 +8,7 @@ from main.views import update_daily_aggregates
 class PollsterAdmin(admin.ModelAdmin):
     list_display = ("name_of_pollster",)
 class Poll_AggregateAdmin(admin.ModelAdmin):
-    list_display =("date",)
+    list_display =("date","includes_third_party", )
 
 class PollAdmin(admin.ModelAdmin):
     

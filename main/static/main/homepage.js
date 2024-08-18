@@ -26,7 +26,7 @@ function renderChart(data){
     svg.append("g")
         .attr("transform", `translate(0, ${height})`)
         .call(d3.axisBottom(x)
-            .ticks(d3.timeDay.every(1))
+            .ticks(d3.timeDay.every(3))
             .tickFormat(d3.timeFormat("%b %d")));
     //adding the y axis here
 
@@ -36,23 +36,25 @@ function renderChart(data){
     const harrisLine = d3.line()
         .x(d => x(d.date))
         .y(d => y(d.harris_support))
+        .curve(d3.curveBumpX);
     
     svg.append("path")
         .datum(data)
         .attr("fill", "none")
         .attr("stroke", "blue")
-        .attr("stroke-width", 1)
+        .attr("stroke-width", 2)
         .attr("d", harrisLine);
     
     const trumpLine = d3.line()
         .x(d => x(d.date))
         .y(d => y(d.trump_support))
+        .curve(d3.curveBumpX);
     
     svg.append("path")
         .datum(data)
         .attr("fill", "none")
         .attr("stroke", "red")
-        .attr("stroke-width", 1)
+        .attr("stroke-width", 2)
         .attr("d", trumpLine);
     
     
