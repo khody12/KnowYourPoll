@@ -97,6 +97,35 @@ a:hover{
 
 }
 
+rect{
+  pointer-events:all;
+  fill-opacity:0;
+  stroke-opacity:0;
+  z-index:1;
+}
+
+.tooltip{
+  position:absolute;
+  padding:5px;
+  background-color:lightblue;
+  color:black;
+  border:1px solid white;
+  display:none;
+  border-radius:10px;
+  opacity:0.75;
+}
+
+.tooltipTwo{
+  position:absolute;
+  padding:5px;
+  background-color:lightcoral;;
+  color:black;
+  border:1px solid white;
+  display:none;
+  border-radius:10px;
+  opacity:0.75;
+}
+
 
 
 

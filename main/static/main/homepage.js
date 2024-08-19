@@ -17,6 +17,17 @@ function renderChart(data){
         .append("g")
             .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
+    const tooltip = d3.select("body")
+        .append("div")
+        .attr("class", "tooltip");
+    
+    const tooltipTwo = d3.select("body")
+        .append("div")
+        .attr("class", "tooltipTwo");
+
+
+    
+
     // defining our domains
     x.domain(d3.extent(data, d=> d.date));
     y.domain([0, 60]);
@@ -56,6 +67,51 @@ function renderChart(data){
         .attr("stroke", "red")
         .attr("stroke-width", 2)
         .attr("d", trumpLine);
+    
+    const verticalLine = svg.append("line")
+        .attr("y1", 0)
+        .attr("y2", height)
+        .attr("fill", "lightblue")
+        .style("stroke", "dash")
+        .style("stroke","black")
+        .attr("stroke-width", 2)
+        .attr("opacity", 0.70)
+        .style("pointer-events", "none")
+        .style("stroke-dasharray", 5.5);
+
+    const listeningRect = svg.append("rect")
+        .attr("width", width)
+        .attr("height", height);
+
+    listeningRect.on("mousemove", function(event){
+        const [xCoord] = d3.pointer(event, this);
+        const bisectDate = d3.bisector(d => d.date).left;
+        const x0 = x.invert(xCoord);
+        const i = bisectDate(data, x0, 1);
+        const d0 = data[i-1];
+        const d1 = data[i];
+        const d = x0 - d0.date > d1.date - x0 ? d1 : d0;
+        const xPos = x(d.date);
+        const yPos = y(d.harris_support);
+
+        verticalLine.attr("x1", xPos)
+            .attr("x1", xPos)
+            .attr("x2", xPos);
+
+        tooltip
+            .style("display", "block")
+            .style("left", `${xPos + 200}px`)
+            .style("top", `${yPos + 10}px`)
+            .html(`<strong>Date:</strong> ${d.date.toLocaleDateString()} <br><strong>Harris:</strong> ${d.harris_support} `);
+        
+        tooltipTwo
+            .style("display", "block")
+            .style("left", `${xPos + 200}px`)
+            .style("top", `${yPos + 60}px`)
+            .html(`<strong>Date:</strong> ${d.date.toLocaleDateString()}  <br><strong>Trump:</strong> ${d.trump_support}`);
+
+
+    });
     
     
 
