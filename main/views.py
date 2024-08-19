@@ -3,6 +3,7 @@ from django.views.generic import ListView
 from . models import Poll, Poll_Aggregate
 from django.db.models import Avg
 from django.http import JsonResponse
+from datetime import date
 
 
 # Create your views here.
@@ -24,7 +25,7 @@ def data_to_graph(request):
     
 def update_daily_aggregates(): #this code is a bit error prone right now, might want to add some catch statements eventually because if there are no polls in the database, this code will fail
     # because Poll_aggregate will give a null value for harris_support and trump_support, and those cant be null.
-    latest_date = Poll.objects.latest('date_published').date_published
+    latest_date = date.today()
 
     harris_avg_h2h = Poll.objects.all().filter(third_party_support__isnull=True).aggregate(Avg("harris_support"))["harris_support__avg"]
     trump_avg_h2h = Poll.objects.all().filter(third_party_support__isnull=True).aggregate(Avg("trump_support"))["trump_support__avg"]

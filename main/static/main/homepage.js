@@ -19,14 +19,14 @@ function renderChart(data){
 
     // defining our domains
     x.domain(d3.extent(data, d=> d.date));
-    y.domain([0, d3.max(data, d => d.harris_support)]);
+    y.domain([0, 60]);
 
     //adding the x axis here
 
     svg.append("g")
         .attr("transform", `translate(0, ${height})`)
         .call(d3.axisBottom(x)
-            .ticks(d3.timeDay.every(3))
+            .ticks(d3.timeDay.every(2))
             .tickFormat(d3.timeFormat("%b %d")));
     //adding the y axis here
 
