@@ -27,13 +27,13 @@ def update_daily_aggregates(): #this code is a bit error prone right now, might 
     # because Poll_aggregate will give a null value for harris_support and trump_support, and those cant be null.
     latest_date = date.today()
 
-    harris_avg_h2h = Poll.objects.all().filter(third_party_support__isnull=True).aggregate(Avg("harris_support"))["harris_support__avg"]
-    trump_avg_h2h = Poll.objects.all().filter(third_party_support__isnull=True).aggregate(Avg("trump_support"))["trump_support__avg"]
+    harris_avg_h2h = round(Poll.objects.all().filter(third_party_support__isnull=True).aggregate(Avg("harris_support"))["harris_support__avg"],1)
+    trump_avg_h2h = round(Poll.objects.all().filter(third_party_support__isnull=True).aggregate(Avg("trump_support"))["trump_support__avg"],1)
 
-    harris_avg_3way = Poll.objects.all().filter(third_party_support__isnull=False).aggregate(Avg("harris_support"))["harris_support__avg"]
-    trump_avg_3way = Poll.objects.all().filter(third_party_support__isnull=False).aggregate(Avg("trump_support"))["trump_support__avg"]
+    harris_avg_3way = round(Poll.objects.all().filter(third_party_support__isnull=False).aggregate(Avg("harris_support"))["harris_support__avg"],1)
+    trump_avg_3way = round(Poll.objects.all().filter(third_party_support__isnull=False).aggregate(Avg("trump_support"))["trump_support__avg"], 1)
 
-    kennedy_3way = Poll.objects.all().filter(third_party_support__isnull=False).aggregate(Avg("third_party_support"))["third_party_support__avg"]
+    kennedy_3way = round(Poll.objects.all().filter(third_party_support__isnull=False).aggregate(Avg("third_party_support"))["third_party_support__avg"], 1)
 
     Poll_Aggregate.objects.update_or_create(
         date=latest_date,
@@ -64,7 +64,7 @@ class Homepage(ListView):
 
     def get_queryset(self):
         base_query = super().get_queryset()
-        data = base_query.filter(third_party_support__isnull=True)
+        data = base_query.filter(third_party_support__isnull=True).order_by("-date_published")
         return data
 
 class Homepage_Three_Way(ListView):
@@ -74,6 +74,6 @@ class Homepage_Three_Way(ListView):
 
     def get_queryset(self):
         base_query = super().get_queryset()
-        data = base_query.filter(third_party_support__isnull=False)
+        data = base_query.filter(third_party_support__isnull=False).order_by("date_published")
         return data
     

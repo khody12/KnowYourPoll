@@ -24,9 +24,10 @@ function renderChart(data){
     const tooltipTwo = d3.select("body")
         .append("div")
         .attr("class", "tooltipTwo");
+    const tooltipThree = d3.select("body")
+        .append("div")
+        .attr("class", "tooltipThree")
 
-
-    
 
     // defining our domains
     x.domain(d3.extent(data, d=> d.date));
@@ -37,7 +38,7 @@ function renderChart(data){
     svg.append("g")
         .attr("transform", `translate(0, ${height})`)
         .call(d3.axisBottom(x)
-            .ticks(d3.timeDay.every(2))
+            .ticks(d3.timeDay.every(3))
             .tickFormat(d3.timeFormat("%b %d")));
     //adding the y axis here
 
@@ -77,7 +78,7 @@ function renderChart(data){
         .attr("stroke-width", 2)
         .attr("opacity", 0.70)
         .style("pointer-events", "none")
-        .style("stroke-dasharray", 5.5);
+        .style("stroke-dasharray", 3.5);
 
     const listeningRect = svg.append("rect")
         .attr("width", width)
@@ -102,13 +103,18 @@ function renderChart(data){
             .style("display", "block")
             .style("left", `${xPos + 200}px`)
             .style("top", `${yPos + 10}px`)
-            .html(`<strong>Date:</strong> ${d.date.toLocaleDateString()} <br><strong>Harris:</strong> ${d.harris_support} `);
+            .html(`<br><strong>Harris:</strong> ${d.harris_support} `);
         
         tooltipTwo
             .style("display", "block")
             .style("left", `${xPos + 200}px`)
             .style("top", `${yPos + 60}px`)
-            .html(`<strong>Date:</strong> ${d.date.toLocaleDateString()}  <br><strong>Trump:</strong> ${d.trump_support}`);
+            .html(`  <br><strong>Trump:</strong> ${d.trump_support}`);
+        tooltipThree
+            .style("display", "block")
+            .style("top", `${yPos}px`)
+            .style("left", `${xPos + 120}px`)
+            .html(`${d.date.toLocaleDateString()}`)
 
 
     });

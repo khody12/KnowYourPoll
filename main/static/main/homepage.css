@@ -118,7 +118,17 @@ rect{
 .tooltipTwo{
   position:absolute;
   padding:5px;
-  background-color:lightcoral;;
+  background-color:lightcoral;
+  color:black;
+  border:1px solid white;
+  display:none;
+  border-radius:10px;
+  opacity:0.75;
+}
+.tooltipThree{
+  position:absolute;
+  padding:5px;
+  
   color:black;
   border:1px solid white;
   display:none;
