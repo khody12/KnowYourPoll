@@ -61,7 +61,7 @@ tr:last-child td {
 .container{
     display:flex;
     width:100%;
-    justify-content:space-between;
+    justify-content:flex-start;
     align-items:center;
     background:linear-gradient(to right,rgb(119, 119, 194), rgb(180, 84, 84));
     font-size:10px;
@@ -105,23 +105,27 @@ rect{
 }
 
 .tooltip{
+  
   position:absolute;
   padding:5px;
+  
   background-color:lightblue;
   color:black;
   border:1px solid white;
-  display:none;
+  display:inline-block;
   border-radius:10px;
   opacity:0.75;
 }
 
 .tooltipTwo{
+  
   position:absolute;
   padding:5px;
+  
   background-color:lightcoral;
   color:black;
   border:1px solid white;
-  display:none;
+  display:inline-block;
   border-radius:10px;
   opacity:0.75;
 }

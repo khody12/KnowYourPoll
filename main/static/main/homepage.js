@@ -96,28 +96,36 @@ function renderChart(data){
         const yPos = y(d.harris_support);
 
         verticalLine.attr("x1", xPos)
+            .style("display", "block")
             .attr("x1", xPos)
             .attr("x2", xPos);
 
         tooltip
-            .style("display", "block")
+            .style("display", "inline-block")
             .style("left", `${xPos + 200}px`)
             .style("top", `${yPos + 10}px`)
-            .html(`<br><strong>Harris:</strong> ${d.harris_support} `);
+            .html(`<strong>Harris:</strong> ${d.harris_support} `);
         
         tooltipTwo
-            .style("display", "block")
+            .style("display", "inline-block")
             .style("left", `${xPos + 200}px`)
             .style("top", `${yPos + 60}px`)
-            .html(`  <br><strong>Trump:</strong> ${d.trump_support}`);
+            .html(`<strong>Trump:</strong> ${d.trump_support}`);
         tooltipThree
             .style("display", "block")
             .style("top", `${yPos}px`)
             .style("left", `${xPos + 120}px`)
             .html(`${d.date.toLocaleDateString()}`)
-
-
     });
+
+    listeningRect.on("mouseleave", function(event){
+        verticalLine.transition()
+            .duration(50)
+            .style("display", "none")
+        tooltip.style("display", "none");
+        tooltipTwo.style("display", "none");
+        tooltipThree.style("display", "none");
+    })
     
     
 
