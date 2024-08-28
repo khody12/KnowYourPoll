@@ -64,7 +64,7 @@ tr:last-child td {
   border-bottom: none; /* Remove bottom border for the last row */
 }
 
-.container{
+.header-container{
     display:flex;
     width:100%;
     justify-content:flex-start;
@@ -74,7 +74,7 @@ tr:last-child td {
 }
 
 
-.container > div{
+.header-container > div{
   margin:10px;
 }
 
