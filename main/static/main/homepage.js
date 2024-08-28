@@ -109,7 +109,7 @@ function renderChart(data){
         tooltipTwo
             .style("display", "inline-block")
             .style("left", `${xPos + 200}px`)
-            .style("top", `${yPos + 60}px`)
+            .style("top", `${yPos + 40}px`)
             .html(`<strong>Trump:</strong> ${d.trump_support}`);
         tooltipThree
             .style("display", "block")
