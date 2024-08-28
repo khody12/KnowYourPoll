@@ -55,6 +55,7 @@ function renderChart(data){
         .attr("fill", "none")
         .attr("stroke", "blue")
         .attr("stroke-width", 2)
+        .attr("stroke-linecap", "round")
         .attr("d", harrisLine);
     
     const trumpLine = d3.line()
@@ -67,7 +68,9 @@ function renderChart(data){
         .attr("fill", "none")
         .attr("stroke", "red")
         .attr("stroke-width", 2)
+        .attr("stroke-linecap", "round")
         .attr("d", trumpLine);
+        
     
     const verticalLine = svg.append("line")
         .attr("y1", 0)
