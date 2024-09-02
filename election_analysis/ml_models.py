@@ -126,7 +126,7 @@ def accuracy_fn(y_true, y_pred):
     correct = torch.eq(y_true, y_pred).sum().item()
     acc = (correct/len(y_pred)) * 100
     return acc
-train_model = True
+train_model = False
 
 if train_model:
     for epoch in range(epochs):
@@ -163,17 +163,18 @@ if train_model:
             print(f"Epoch: {epoch} | Loss: {loss}, Acc: {acc:.2f} | Test loss: {test_loss} Test accuracy: {test_acc}")
             print(model_0.state_dict())
 
-torch.save(model_0.state_dict(), "election_analysis/election_model.pth")
+if train_model:
+    torch.save(model_0.state_dict(), "election_analysis/election_model.pth")
+    
 loaded_model_0 = ElectionModelV0()
-
 loaded_model_0.load_state_dict(torch.load("election_analysis/election_model.pth"))
 
 loaded_model_0.eval()
 with torch.inference_mode():
     harris_v_trump = torch.tensor([
-    [47.1, 43.8, 1, 0, -0.25]
+    [47.1, 43.8, 1, 0, -0.75]
     ])
-    new_data_prediction_probs = model_0(harris_v_trump).squeeze()
+    new_data_prediction_probs = loaded_model_0(harris_v_trump).squeeze()
     new_data_prediction = torch.round(new_data_prediction_probs)
 
     print(f"Prediction probability: {new_data_prediction_probs}")
