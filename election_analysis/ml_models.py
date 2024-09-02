@@ -163,22 +163,25 @@ if train_model:
             print(f"Epoch: {epoch} | Loss: {loss}, Acc: {acc:.2f} | Test loss: {test_loss} Test accuracy: {test_acc}")
             print(model_0.state_dict())
 
-print(test_y_probs)
-print(y_data[training_split:])
+torch.save(model_0.state_dict(), "election_analysis/election_model.pth")
+loaded_model_0 = ElectionModelV0()
+
+loaded_model_0.load_state_dict(torch.load("election_analysis/election_model.pth"))
+
+loaded_model_0.eval()
+with torch.inference_mode():
+    harris_v_trump = torch.tensor([
+    [47.1, 43.8, 1, 0, -0.25]
+    ])
+    new_data_prediction_probs = model_0(harris_v_trump).squeeze()
+    new_data_prediction = torch.round(new_data_prediction_probs)
+
+    print(f"Prediction probability: {new_data_prediction_probs}")
+    print(f"Prediction: {new_data_prediction}")
+
+    
 
 
-# harris_v_trump = torch.tensor([
-#     [47.1, 43.8, 0, 0, 0]
-# ])
-
-# model_0.eval()
-
-# with torch.inference_mode():
-#     new_data_prediction_probs = model_0(harris_v_trump).squeeze()
-#     new_data_prediction = torch.round(new_data_prediction_probs)
-
-# print(f"Prediction probability: {new_data_prediction_probs}")
-# print(f"Prediction: {new_data_prediction}")
 
 
 
