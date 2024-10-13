@@ -5,6 +5,11 @@ from django.db.models import Avg
 from django.http import JsonResponse
 from datetime import date
 
+from django.views.generic import TemplateView
+
+from election_analysis.ml_models import new_data_prediction_probs, new_data_prediction
+
+
 
 # Create your views here.
 
@@ -76,4 +81,12 @@ class Homepage_Three_Way(ListView):
         base_query = super().get_queryset()
         data = base_query.filter(third_party_support__isnull=False).order_by("date_published")
         return data
-    
+
+class election_analysis(TemplateView):
+    template_name = "main/election_analysis.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['probability'] = new_data_prediction_probs
+        context['winner'] = new_data_prediction
+

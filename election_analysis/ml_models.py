@@ -210,6 +210,12 @@ with torch.inference_mode():
     new_data_prediction_probs = loaded_model_0(harris_v_trump).squeeze()
     new_data_prediction = torch.round(new_data_prediction_probs)
 
+    if new_data_prediction == 0:
+        print(f"Prediction: Trump")
+    else:
+        print("Prediction: Harris")
+
+
     print(f"Prediction probability: {new_data_prediction_probs}")
     print(f"Prediction: {new_data_prediction}")
 

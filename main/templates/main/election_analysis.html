@@ -1,4 +1,5 @@
 {% extends "main/base.html" %}
+{% load static %}
 {% block css_styles %} 
     <link rel="stylesheet" href="{% static "main/election_analysis.css" %}">
 {% endblock %}
@@ -6,16 +7,17 @@
 {% block content %}
 
 <div class="header-container">
-    <div id ="main-nav">
-      <h1><a href="{% url "home"%}" style="text-decoration:none;">Know Your Poll</a></h1>
-    </div>
-    <div class="h2h"> 
-      <h1>Harris v Trump</h1>
-    </div>
-    
-    <!-- <div class="threewayrace">
-      <h1><a href="{%url "threeway" %}" class="button">With Kennedy</a></h1>
-    </div> -->
+  <div id ="main-nav">
+    <h1><a href="{% url "home" %}" style="text-decoration:none;">Know Your Poll</a></h1>
+  </div>
+  <div class="h2h"> 
+    <h1><a href="{% url "home" %}" style="text-decoration:none;">Poll Tracker</a></h1>
+  </div>
+  
+  <!-- <div class="threewayrace">
+    <h1><a href="{%url "threeway" %}" class="button">With Kennedy</a></h1>
+  </div> -->
+
 </div>
 
     

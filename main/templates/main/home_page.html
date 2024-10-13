@@ -1,7 +1,9 @@
 {% extends "main/base.html" %}
 {% load static %}
 
-
+{% block title %}
+  Know Your Poll
+{% endblock %}
 {% block css_styles %}
   <link rel="stylesheet" href="{% static "main/homepage.css" %}">
 
@@ -16,7 +18,10 @@
     <h1><a href="{% url "home"%}" style="text-decoration:none;">Know Your Poll</a></h1>
   </div>
   <div class="h2h"> 
-    <h1>Harris v Trump</h1>
+    <h1><a href="{% url "home" %}" style="text-decoration:none;">Poll Tracker</a></h1>
+  </div>
+  <div class="h2h">
+    <h1><a href="{% url "analysis" %}" style="text-decoration:none;">Election Prediction</h1>
   </div>
   
   <!-- <div class="threewayrace">
