@@ -149,7 +149,7 @@ def accuracy_fn(y_true, y_pred):
     correct = torch.eq(y_true, y_pred).sum().item()
     acc = (correct/len(y_pred)) * 100
     return acc
-train_model = True
+train_model = False
 
 if train_model:
     for epoch in range(epochs):
@@ -195,7 +195,7 @@ loaded_model_0.load_state_dict(torch.load("election_analysis/election_model.pth"
 loaded_model_0.eval()
 with torch.inference_mode():
     harris_v_trump = torch.tensor([
-    [44, 43.5, 0, 0, 0]
+    [47.1, 47.2, 0, 0, 0]
     ])
     new_data_prediction_probs = loaded_model_0(harris_v_trump).squeeze()
     new_data_prediction = torch.round(new_data_prediction_probs)

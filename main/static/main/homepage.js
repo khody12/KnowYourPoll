@@ -35,7 +35,9 @@ function renderChart(data){
 
     //adding the x axis here
 
-    const tickValues = d3.timeDay.range(d3.min(data, d=> d.date), d3.max(data, d=> d.date), 3);
+    //const tickValues = d3.timeDay.range(d3.min(data, d=> d.date), d3.max(data, d=> d.date), 3);
+    tickValues = data.map(d => d.date);
+    tickValues = tickValues.filter((_, index) => index % 3 == 0).map(time => new Date(time));
 
     svg.append("g")
         .attr("transform", `translate(0, ${height})`)
@@ -91,8 +93,8 @@ function renderChart(data){
 
     listeningRect.on("mousemove", function(event){
         const [xCoord] = d3.pointer(event, this);
-        //const bisectDate = d3.bisector(d => d.date).left;
-        const x0 = x.invert(xCoord);
+        const bisectDate = d3.bisector(d => d.date).left;
+        const x0 = new Date(x.invert(xCoord));
         const i = bisectDate(data, x0, 1);
         const d0 = data[i-1];
         const d1 = data[i];

@@ -25,7 +25,7 @@ def data_to_graph(request):
     
 def update_daily_aggregates(): #this code is a bit error prone right now, might want to add some catch statements eventually because if there are no polls in the database, this code will fail
     # because Poll_aggregate will give a null value for harris_support and trump_support, and those cant be null.
-    latest_date = date.today()
+    latest_date = date.today() #does not include time of day
 
     harris_avg_h2h = round(Poll.objects.all().filter(third_party_support__isnull=True).aggregate(Avg("harris_support"))["harris_support__avg"],1)
     trump_avg_h2h = round(Poll.objects.all().filter(third_party_support__isnull=True).aggregate(Avg("trump_support"))["trump_support__avg"],1)
