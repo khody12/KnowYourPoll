@@ -5,6 +5,8 @@ import torch.optim as optim
 from torch.utils.data import DataLoader, TensorDataset
 import sys
 
+from main.models import Poll_Aggregate
+
 #to preface, i am by no means a data scientist or a political analyst, i merely enjoy politics and coding. 
 # I would really not take this model too seriously and my data can easily be considered questionable
 
@@ -193,9 +195,17 @@ loaded_model_0 = ElectionModelV0()
 loaded_model_0.load_state_dict(torch.load("election_analysis/election_model.pth"))
 
 loaded_model_0.eval()
+
+Econ_2024 = 0.16
+
+harris_support = Poll_Aggregate.objects.all().latest('date').harris_support
+trump_support = Poll_Aggregate.objects.all().latest('date').trump_support
+
+
+
 with torch.inference_mode():
     harris_v_trump = torch.tensor([
-    [47.1, 47.2, 0, 0, 0]
+    [harris_support, trump_support, 0, 0, Econ_2024]
     ])
     new_data_prediction_probs = loaded_model_0(harris_v_trump).squeeze()
     new_data_prediction = torch.round(new_data_prediction_probs)
