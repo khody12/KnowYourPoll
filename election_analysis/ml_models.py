@@ -198,28 +198,34 @@ loaded_model_0.eval()
 
 Econ_2024 = 0.16
 
+
+
+
 harris_support = Poll_Aggregate.objects.all().latest('date').harris_support
 trump_support = Poll_Aggregate.objects.all().latest('date').trump_support
-
-
 
 with torch.inference_mode():
     harris_v_trump = torch.tensor([
     [harris_support, trump_support, 0, 0, Econ_2024]
     ])
     new_data_prediction_probs = loaded_model_0(harris_v_trump).squeeze()
-    new_data_prediction = torch.round(new_data_prediction_probs)
-
-    if new_data_prediction == 0:
-        print(f"Prediction: Trump")
+    if round(new_data_prediction_probs.item()) == 0:
+        new_data_prediction = "Trump"
     else:
-        print("Prediction: Harris")
+        new_data_prediction = "Harris"
+    new_data_prediction_probs = round(new_data_prediction_probs.item(), 10) * 100
+
+    # new_data_prediction = round(new_data_prediction_probs)
+
+    
+
+    
 
 
     print(f"Prediction probability: {new_data_prediction_probs}")
     print(f"Prediction: {new_data_prediction}")
 
-    
+
 
 
 

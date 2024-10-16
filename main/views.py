@@ -89,4 +89,5 @@ class election_analysis(TemplateView):
         context = super().get_context_data(**kwargs)
         context['probability'] = new_data_prediction_probs
         context['winner'] = new_data_prediction
+        return context
 
